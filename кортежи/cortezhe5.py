@@ -1,28 +1,22 @@
 from collections import namedtuple
+Student = namedtuple('Student', 'name age grade city')
+students = (
+   Student('Александра', '13', 4.3, 'Москва'),
+   Student('Полина', '21', 5, 'Чулым'),
+   Student('Елизавета', '17', 2.9, 'Санкт-Петербург'),
+   Student('Евгений', '18', 3, 'Новосибирск'),
+   Student('Ольга', '17', 4.5, 'Астана'),
+   Student('Людмила', '18', 3.2, 'Барнаул'),
+   Student('Константин', '16', 3.7, 'Сыктывкар')
+)
+def gs(students):
+   tg = 0
 
-Student = namedtuple('Student', ['name', 'age', 'grade', 'city'])
+   for student in students:
+       tg += student.grade
+   a = tg / len(students)
 
-def good_students(students):
-    total_grades = 0
-    for student in students:
-        total_grades += student.grade
-    avg_grade = total_grades / len(students)
-    
-    good_students_list = []
-    for student in students:
-        if student.grade >= avg_grade:
-            good_students_list.append(student.name)
-    
-    print(f"Ученики {', '.join(good_students_list)} в этом семестре хорошо учатся!")
+   g = [student.name for student in students if student.grade >= a]
+   print('Ученики ', ', '.join(g), ' в этом семестре хорошо учатся!')
 
-students = [
-    Student("Иван", 20, 80, "Москва"),
-    Student("Мария", 22, 90, "Санкт-Петербург"),
-    Student("Алексей", 21, 75, "Новосибирск"),
-    Student("Екатерина", 23, 85, "Екатеринбург"),
-    Student("Андрей", 20, 92, "Казань"),
-    Student("Ольга", 21, 88, "Уфа"),
-    Student("Дмитрий", 22, 78, "Новосибирск")
-]
-
-good_students(students)
+gs(students)
